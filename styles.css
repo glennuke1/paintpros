@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #ffffff; /* Set background color using CSS custom property */
-    background-image: url(https://storage.googleapis.com/paintingcompanycom/images/bg.png);
+    background-image: url(/images/bg.png);
     background-size: 50%;
     color: rgb(2, 2, 24); /* Set text color using CSS custom property */
     font-size: 18px;
@@ -32,7 +32,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(https://storage.googleapis.com/paintingcompanycom/images/photo_wallpaper_1_darken.webp); /* Add the path to your background image */
+    background-image: url(/images/photo_wallpaper_1_darken.webp); /* Add the path to your background image */
     background-size: cover; /* Cover the entire container with the background image */
     background-position: center; /* Center the background image */
     filter: blur(5px); /* Apply blur effect to the background image */
@@ -284,4 +284,8 @@ form {
         .btn {color: #FFF;};
         .accordion {background-color: #1a1919; color: white;}
         .panel {color: white;}
-    } 
+    }
+
+    @media screen and (max-width: 1200px) {
+        #langbutton {height: 30px !important; width: 40px !important;}
+    }
