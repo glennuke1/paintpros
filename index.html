@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paint Pros</title>
+    <link rel="icon" type="image/x-icon" href="https://storage.googleapis.com/paintingcompanycom/images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .dark-mode {
+            background-color: #111;
+            background-image: none;
+            header {background: linear-gradient(#070707 50%, #111 100%); color: white;}
+            footer {color: #FFF;}
+            .infobox {color: white;}
+            .formbox {background-color: #1a1919; color: white;}
+            form textarea {background-color: #252424; color: white;}
+            form input {background-color: #252424; color: white;}
+            .btn {color: #FFF;};
+        } 
+
+        @media screen and (max-width: 1200px) {
+            #langbutton {height: 30px !important; width: 40px !important;}
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <input type="button" id="langbutton" onclick="location.href='#googtrans(en|es)';" class="lang-es lang-select" style="height: 40px; width: 50px; float: right; margin-right: 80px; margin-top: 10px; cursor: pointer; background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/1280px-Flag_of_Mexico.svg.png); background-size: 100% 100%; border-radius: 10px;"></input>
+        <input type="button" id="langbutton" onclick="location.href='#googtrans(en|en)';" class="lang-en lang-select" style="height: 40px; width: 50px; float: right; margin-right: 10px; margin-top: 10px; cursor: pointer; background: url(https://cdn.britannica.com/33/4833-004-828A9A84/Flag-United-States-of-America.jpg); background-size: 100% 100%; border-radius: 10px;"></input>    
+        <img src="https://storage.googleapis.com/paintingcompanycom/images/painrprosicon.png" height="200%" style="transform: translateY(-8em); width: 100%; object-fit:scale-down; position: relative; z-index: -1;">
+    </header>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element');
+        }
+    
+        function triggerHtmlEvent(element, eventName) {
+          var event;
+          if (document.createEvent) {
+            event = document.createEvent('HTMLEvents');
+            event.initEvent(eventName, true, true);
+            element.dispatchEvent(event);
+          } else {
+            event = document.createEventObject();
+            event.eventType = eventName;
+            element.fireEvent('on' + event.eventType, event);
+          }
+        }
+    
+        jQuery('.lang-select').click(function() {
+          var theLang = jQuery(this).attr('data-lang');
+          jQuery('.goog-te-combo').val(theLang);
+    
+          window.location = jQuery(this).attr('href');
+          location.reload();
+        });
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#home">Home</a>
+        <a href="services.html">Services</a>
+        <a href="finishedjobs.html">Finished jobs</a>
+        <a href="#contact">Contact</a>
+        <a href="#quote">Request quote</a>
+        <label class="switch">
+            <input id="myinput" onclick="toggledarkmode()" type="checkbox">
+            <span class="slider round"></span>
+            <label for="myinput" style="margin-left: 4em; transform: translateY(-1.3em); width: 10em; display: block; position: relative; line-height: 1.4em; color: #818181; font-size: 16px;">Toggle dark mode</label>
+        </label>
+    </div>
+
+    <script>
+        document.body.style.backgroundImage = URL("https://storage.googleapis.com/paintingcompanycom/images/bg.png")
+        
+        // Function to check if dark mode cookie exists and toggle dark mode accordingly
+        function checkDarkModeCookie() {
+            // Check if the darkMode cookie exists
+            const darkModeCookie = getCookie("darkMode");
+            if (darkModeCookie === "true") {
+                // If the darkMode cookie is true, enable dark mode
+                document.body.classList.add("dark-mode");
+                // Make sure the toggle switch is checked
+                document.getElementById("myinput").checked = true;
+            }
+        }
+    
+        // Function to set a cookie
+        function setCookie(cname, cvalue, exdays) 
+        {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+    
+        // Function to get a cookie
+        function getCookie(cname) 
+        {
+            const name = cname + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) === 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    
+        // Function to handle dark mode toggle
+        function toggledarkmode() 
+        {
+            const element = document.body;
+            element.classList.toggle("dark-mode");
+    
+            // If dark mode is enabled, set darkMode cookie to true, else set it to false
+            const darkModeEnabled = element.classList.contains("dark-mode");
+            setCookie("darkMode", darkModeEnabled.toString(), 365);
+        }
+    
+        // Call the function to check dark mode cookie when the page loads
+        checkDarkModeCookie();
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <button class="btn" onclick="openNav()"><i class="fa fa-bars"></i></button>
+
+    <script>
+        function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+
+    <div class="infobox">
+        <section>
+            <div>
+                <h2 id="services">What we have to offer</h2>
+                <img src="https://storage.googleapis.com/paintingcompanycom/images/image1.jpg" style="border-radius: 30px; width: 300px; float: right; transform: translateY(-4em); margin: 4em 0 0.5em 5em;">
+                <ol style="line-height: 2em;">
+                    <li><b>Painting: </b> We offer professional painting services for both residential and commercial properties. Our skilled painters use high-quality paints and techniques to ensure a flawless finish.</li>
+                    <li><b>Interior decoration: </b> Our interior decoration services include color consultation, wallpaper installation, and decorative painting. We work closely with clients to transform their spaces into beautiful and inviting environments.</li>
+                </ol>
+            </div>
+        </section>
+    </div>
+
+    <div class="infobox">
+        <section>
+            <h2>How to order</h2>
+            <ol style="line-height: 2em;">
+                <li><b>Request a Quote: </b> Fill out the form below to request a free quote for your painting or interior decoration project.</li>
+                <li><b>Contact Us: </b> Get in touch with our team directly to discuss your requirements and place your order.</li>
+            </ol>
+        </section>
+    </div>
+
+    <div class="infobox">
+        <section>
+            <h2>Pricing</h2>
+            <img src="https://storage.googleapis.com/paintingcompanycom/images/image2.webp" style="border-radius: 30px; width: 300px; float: right; margin: 0em 0 0.5em 5em;">
+            <p>Our prices differ based on multiple factors: distance from us, area, material types, difficulty</p>
+            <p>Contact us or fill out the form below to request a free quote for your painting or interior decoration project.</p>
+        </section>
+    </div>
+
+    <div class="infobox">
+        <section>
+            <h2>Where we operate</h2>
+            <p>We offer our services all around South Florida</p>
+        </section>
+    </div>
+
+    <div class="infobox">
+        <section>
+            <h2 id="contact">Get in contact with us</h2>
+            <img src="https://storage.googleapis.com/paintingcompanycom/images/image3.jpg" style="border-radius: 30px; width: 300px; float: right; position: relative; margin: 0em 0 0.5em 5em;">
+            <ol style="line-height: 2em;">
+                <li><b>Phone number: </b> number</li>
+                <li><b>Email: </b> email</li>
+            </ol>
+        </section>
+    </div>
+
+    <div class="container">
+        <div class="background-overlay"></div>
+
+        <div class="formbox">
+            <h2 id="quote" style="text-align:center;">Request offer</h2>
+            <form action="https://formsubmit.co/gentpooy@gmail.com" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="New submission for job!">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="phone">Phone number:</label>
+                <input type="tel" id="phone" name="phone" required><br><br>
+                <label for="project-details">Project Details:</label><br>
+                <textarea id="project-details" name="message" rows="4" cols="50" required></textarea><br><br>
+                <label for="attachment">Reference photo:</label>
+                <input style="padding: 10px; position: relative; left: 83px; color: transparent; background-color: transparent;" id="file" type="file" name="attachment" accept="image/png, image/jpeg">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Painting Job Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>
