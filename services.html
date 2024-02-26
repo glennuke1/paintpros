@@ -48,6 +48,8 @@
     
           window.location = jQuery(this).attr('href');
           location.reload();
+
+          setCookie("language", location.href, 365);
         });
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -118,6 +120,11 @@
     
         // Call the function to check dark mode cookie when the page loads
         checkDarkModeCookie();
+
+        if (getCookie("language") !== location.href)
+        {
+            location.href = getCookie("language");
+        }
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
