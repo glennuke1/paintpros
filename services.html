@@ -124,6 +124,7 @@
         if (getCookie("language") !== location.href)
         {
             location.href = getCookie("language");
+            setCookie("language", location.href, 365);
         }
     </script>
 
