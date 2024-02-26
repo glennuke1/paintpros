@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <input type="button" id="langbutton" onclick="location.href='#googtrans(en|es)';" class="lang-es lang-select" style="height: 40px; width: 50px; float: left; margin-left: 80px; margin-top: 10px; cursor: pointer; background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/1280px-Flag_of_Mexico.svg.png); background-size: 100% 100%; border-radius: 10px;"></input>
+        <input type="button" id="langbutton" onclick="location.href='#googtrans(en|es)';" class="lang-es lang-select" style="height: 40px; width: 50px; float: left; margin-left: 80px; margin-top: 10px; cursor: pointer; background: url(https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/Flag_of_Spain.svg/1200px-Flag_of_Spain.svg.png); background-size: 100% 100%; border-radius: 10px;"></input>
         <input type="button" id="langbutton" onclick="location.href='#googtrans(en|en)';" class="lang-en lang-select" style="height: 40px; width: 50px; float: left; margin-left: 10px; margin-top: 10px; cursor: pointer; background: url(https://cdn.britannica.com/33/4833-004-828A9A84/Flag-United-States-of-America.jpg); background-size: 100% 100%; border-radius: 10px;"></input>    
         <img src="/images/painrprosicon.png" height="200%" style="transform: translateY(-8em); width: 100%; object-fit:scale-down; position: relative; z-index: -1;">
     </header>
@@ -49,7 +49,7 @@
           window.location = jQuery(this).attr('href');
           location.reload();
 
-          setCookie("language", location.href, 365);
+          setCookie("language", window.location.hash, 365);
         });
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -121,10 +121,13 @@
         // Call the function to check dark mode cookie when the page loads
         checkDarkModeCookie();
 
-        if (getCookie("language") !== location.href)
+        if (getCookie("language"))
         {
-            location.href = getCookie("language");
-            setCookie("language", location.href, 365);
+            if (getCookie("language") !==window.location.hash)
+            {
+                window.location.hash = getCookie("language");
+                setCookie("language", window.location.hash, 365);
+            }
         }
     </script>
 
